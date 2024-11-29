@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bouton "En savoir plus"</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .description {
+            display: none;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #333;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <button id="toggle-button">En savoir plus</button>
+    <div class="description" id="description">
+        Ceci est une description détaillée qui apparaît lorsque vous cliquez sur le bouton.
+    </div>
+
+    <script>
+        const button = document.getElementById('toggle-button');
+        const description = document.getElementById('description');
+
+        button.addEventListener('click', () => {
+            if (description.style.display === 'none' || description.style.display === '') {
+                description.style.display = 'block';
+                button.textContent = 'Réduire';
+            } else {
+                description.style.display = 'none';
+                button.textContent = 'En savoir plus';
+            }
+        });
+    </script>
+</body>
+</html>
