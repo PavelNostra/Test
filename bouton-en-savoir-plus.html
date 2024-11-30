@@ -11,12 +11,23 @@
             padding: 20px;
             text-align: center;
         }
+
         .description {
             display: none;
             margin-top: 10px;
             font-size: 14px;
             color: #333;
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            transform: translateY(-10px);
         }
+
+        .description.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         button {
             padding: 10px 20px;
             font-size: 16px;
@@ -25,9 +36,16 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
+
         button:hover {
             background-color: #0056b3;
+        }
+
+        button.small {
+            padding: 5px 10px;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -42,12 +60,18 @@
         const description = document.getElementById('description');
 
         button.addEventListener('click', () => {
-            if (description.style.display === 'none' || description.style.display === '') {
-                description.style.display = 'block';
-                button.textContent = 'Réduire';
-            } else {
-                description.style.display = 'none';
+            if (description.classList.contains('show')) {
+                description.classList.remove('show');
+                setTimeout(() => {
+                    description.style.display = 'none';
+                }, 500); // Correspond au délai de l'animation
                 button.textContent = 'En savoir plus';
+                button.classList.remove('small');
+            } else {
+                description.style.display = 'block';
+                setTimeout(() => description.classList.add('show'), 10); // Déclenche l'animation
+                button.textContent = 'Réduire';
+                button.classList.add('small');
             }
         });
     </script>
